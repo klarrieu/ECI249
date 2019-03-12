@@ -7,10 +7,11 @@ def dot(l1, l2):
     return sum([e1 * e2 for e1, e2 in zip(l1, l2)])
 
 class LP:
-    def __init__(self):
+    def __init__(self, *args):
         self.q_names = ['< 5,000 cfs', '5-6,000 cfs', '6-8,000 cfs', '8-10,000 cfs', '10,000+ cfs']
         self.q_probs = [0.8, 0.11, 0.06, 0.02, 0.01]
-        self.q_upstream_probs = [0.9, 0.05, 0.03, 0.01, 0.01]
+        if 'upstream' in args:
+            self.q_probs = [0.9, 0.05, 0.03, 0.01, 0.01]
         self.damage0 = [0, 2.1e6, 3e6, 4.2e6, 6e6]
 
         self.perm_names = ['raise', 'warning', 'sacrifice']
@@ -52,12 +53,12 @@ class LP:
 
         return perm_cost + em_cost + dam_cost
 
+    '''
     def run_LP(self):
         best_evc = np.inf
         best_perm = []
         best_em = []
         for perm_vector in self.perm_vectors:
-            print(perm_vector)
             for em_vector in self.em_vectors:
                 val = self.evc(perm_vector, em_vector)
                 if val < best_evc:
@@ -66,8 +67,54 @@ class LP:
                     best_em = em_vector
 
         return best_evc, best_perm, best_em
+    '''
+
+    def run_LP(self):
+        # optimal values of each permanent option
+        perm_vals = []
+        # for each perm choice, optimize
+        for option in range(len(self.perm_names)):
+            # iterate over possible values
+            best_option_val = None
+            best_cost = np.inf
+            perm_vector = [0] * len(self.perm_names)
+            em_vector = [0] * len(self.em_names)
+
+            for option_val in range(int(self.perm_lims[option])+1):
+                perm_vector[option] = option_val
+                cost = self.evc(perm_vector, em_vector)
+                if cost < best_cost:
+                    best_cost = cost
+                    best_option_val = option_val
+
+            perm_vals.append(best_option_val)
+
+        # optimal values of each emergency option at each discharge
+        em_vals = []
+        # for each discharge
+        for q in range(len(self.q_names)):
+            # for each emergency choice, optimize
+            em_vals_q = []
+            for option in range(len(self.em_names)):
+                # iterate over possible values
+                best_option_val = None
+                best_cost = np.inf
+                perm_vector = [0] * len(self.perm_names)
+                em_vector = [0] * len(self.em_names)
+
+                for option_val in range(int(self.em_lims[option])+1):
+                    em_vector[option] = option_val
+                    cost = dot(em_vector, self.em_costs) + self.damage(q, perm_vector, em_vector)
+                    if cost < best_cost:
+                        best_cost = cost
+                        best_option_val = option_val
+
+                em_vals_q.append(best_option_val)
+
+            em_vals.append(em_vals_q)
+
+        return perm_vals, em_vals
 
 
 lp = LP()
-solution = lp.run_LP()
-print(solution)
+
