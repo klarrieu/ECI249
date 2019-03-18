@@ -47,6 +47,8 @@ class LP:
                     print(self.em_names[j] + ', ' + self.q_names[q])
                 self.cs.append(c)
 
+        self.run_LP()
+
 
     def run_LP(self):
         # initialize decision variables
@@ -83,9 +85,14 @@ class LP:
             print var
             print var.varValue
 
-        perm_df = pd.DataFrame({'Implemented Quantity': [perm_vars[i].value() for i in range(len(self.perm_names))]}, index=self.perm_names)
-        
-        print(perm_df)
+        self.perm_df = pd.DataFrame({'Implemented Quantity': [perm_vars[i].value() for i in range(len(self.perm_names))]}, index=self.perm_names)
+        self.perm_df.index.name = 'Permanent Option'
+        self.em_df = pd.DataFrame(dict(zip(self.q_names, [[em_vars[j][q].value() for j in range(len(self.em_names))] for q in self.q_names])), index=self.em_names)
+        self.em_df = self.em_df[self.q_names]
+        self.em_df.index.name = 'Emergency Option'
+
+        print(self.perm_df)
+        print(self.em_df)
         return model
 
 
