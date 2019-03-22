@@ -1,0 +1,29 @@
+<PAMDataset>
+  <SRS>PROJCS["NAD_1983_2011_StatePlane_California_II_FIPS_0402_Ft_US",GEOGCS["GCS_NAD_1983_2011",DATUM["NAD_1983_2011",SPHEROID["GRS_1980",6378137.0,298.257222101,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","1116"]],PRIMEM["Greenwich",0.0,AUTHORITY["EPSG","8901"]],UNIT["Degree",0.0174532925199433,AUTHORITY["EPSG","9102"]],AUTHORITY["EPSG","6318"]],PROJECTION["Lambert_Conformal_Conic_2SP",AUTHORITY["Esri","43020"]],PARAMETER["False_Easting",6561666.666666666,AUTHORITY["Esri","100001"]],PARAMETER["False_Northing",1640416.666666667,AUTHORITY["Esri","100002"]],PARAMETER["Central_Meridian",-122.0,AUTHORITY["Esri","100010"]],PARAMETER["Standard_Parallel_1",38.33333333333334,AUTHORITY["Esri","100025"]],PARAMETER["Standard_Parallel_2",39.83333333333334,AUTHORITY["Esri","100026"]],PARAMETER["Latitude_Of_Origin",37.66666666666666,AUTHORITY["Esri","100021"]],UNIT["Foot_US",0.3048006096012192,AUTHORITY["EPSG","9003"]],AUTHORITY["EPSG","6418"]]</SRS>
+  <Metadata>
+    <MDI key="DataType">Generic</MDI>
+  </Metadata>
+  <Metadata domain="Esri">
+    <MDI key="PyramidResamplingType">NEAREST</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Description>ds_gravin_Dst</Description>
+    <NoDataValue le_hex_equiv="000000A0FFFFEFC7">-3.40282306073710E+38</NoDataValue>
+    <Histograms>
+      <HistItem>
+        <HistMin>0</HistMin>
+        <HistMax>12.48737907409668</HistMax>
+        <BucketCount>256</BucketCount>
+        <IncludeOutOfRange>1</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>409840|1126|830|848|761|706|728|733|709|635|633|624|673|666|768|995|1236|1087|831|548|378|300|263|228|212|190|188|154|146|153|147|136|141|160|142|149|138|182|153|162|196|121|101|106|97|77|72|69|46|51|42|37|53|31|36|38|35|36|20|34|26|40|24|18|26|24|14|24|15|28|28|13|23|16|18|20|20|22|21|23|19|12|21|23|21|26|20|17|23|14|26|24|16|14|19|25|27|21|33|34|30|23|29|18|13|18|12|8|11|5|5|12|15|9|12|8|6|10|16|4|11|11|6|5|7|9|8|9|6|4|6|11|7|7|2|7|9|3|4|5|7|5|3|5|2|5|6|6|7|3|7|3|4|5|6|6|3|6|6|6|1|6|1|6|7|8|2|5|3|4|2|2|6|7|9|3|4|2|8|7|3|3|7|3|5|3|3|4|3|3|2|5|1|4|3|3|4|1|4|1|1|2|2|0|3|1|3|4|4|1|1|3|1|1|2|1|4|0|0|1|1|0|1|1|1|0|2|1|0|0|0|2|1|2|2|0|1|0|0|0|1|2|0|1|0|1|0|0|1|1|0|1|0|1|0|1</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="RepresentationType">ATHEMATIC</MDI>
+      <MDI key="STATISTICS_COVARIANCES">0.1613574069384305</MDI>
+      <MDI key="STATISTICS_SKIPFACTORX">1</MDI>
+      <MDI key="STATISTICS_SKIPFACTORY">1</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
